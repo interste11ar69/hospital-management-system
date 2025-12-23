@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="700.0" prefWidth="990.0" stylesheets="@../../css/Role.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marc.Controllers.RoleManagementController">
+
+    <children>
+        <!-- Role Management Panel -->
+        <VBox fx:id="rolesPanel" alignment="TOP_CENTER" prefHeight="700.0" prefWidth="990.0" spacing="10.0" visible="true">
+            <!-- Title -->
+            <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Role Management" />
+
+            <!-- Search Section -->
+            <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="950.0" spacing="10.0">
+                <TextField fx:id="searchRoleField" prefWidth="500.0" promptText="Search roles..." />
+            </HBox>
+
+            <!-- Table -->
+            <TableView fx:id="roleTable" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="950.0">
+                <columns>
+                    <TableColumn fx:id="roleIdColumn" prefWidth="200.0" text="Role ID" />
+                    <TableColumn fx:id="roleDescColumn" prefWidth="750.0" text="Role Name" />
+                </columns>
+            </TableView>
+
+            <!-- Input Fields -->
+            <HBox alignment="CENTER" spacing="10.0">
+                <TextField fx:id="roleDescField" prefWidth="400.0" promptText="Enter Role Name" />
+            </HBox>
+
+            <!-- Action Buttons -->
+            <HBox alignment="CENTER" spacing="10.0">
+                <Button fx:id="addRoleButton" onAction="#handleAddRole" prefWidth="120.0" text="Add Role" />
+                <Button fx:id="updateRoleButton" onAction="#handleUpdateRole" prefWidth="120.0" text="Update Role" />
+                <Button fx:id="deleteRoleButton" onAction="#handleDeleteRole" prefWidth="120.0" text="Delete Role" />
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>

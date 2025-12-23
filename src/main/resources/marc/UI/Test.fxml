@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="700.0" prefWidth="990.0" stylesheets="@../../css/Test.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marc.Controllers.TestManagementController">
+
+    <children>
+        <!-- Test Management Panel -->
+        <VBox fx:id="testsPanel" alignment="TOP_CENTER" prefHeight="700.0" prefWidth="990.0" spacing="10.0" visible="true">
+            <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Test Management" />
+
+            <!-- Search Section -->
+            <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="950.0" spacing="10.0">
+                <TextField fx:id="SearchTestField" prefWidth="500.0" promptText="Search tests..." />
+            </HBox>
+
+            <!-- Table -->
+            <TableView fx:id="testTable" editable="true" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="950.0">
+                <columns>
+                    <TableColumn fx:id="testIdColumn" prefWidth="200.0" text="Test ID" />
+                    <TableColumn fx:id="testNameColumn" prefWidth="350.0" text="Test Name" />
+                    <TableColumn fx:id="testDescriptionColumn" prefWidth="400.0" text="Description" />
+                </columns>
+            </TableView>
+
+            <!-- Input Fields -->
+            <HBox alignment="CENTER" spacing="10.0">
+                <TextField fx:id="testNameField" prefWidth="400.0" promptText="Enter Test Name" />
+                <TextField fx:id="testDescriptionField" prefWidth="400.0" promptText="Enter Test Description" />
+            </HBox>
+
+            <!-- Action Buttons -->
+            <HBox alignment="CENTER" spacing="10.0">
+                <children>
+                    <Button fx:id="addTestButton" onAction="#handleAddTest" prefWidth="120.0" text="Add Test" />
+                    <Button fx:id="updateTestButton" onAction="#handleUpdateTest" prefWidth="120.0" text="Update Test" />
+                    <Button fx:id="deleteTestButton" onAction="#handleDeleteTest" prefWidth="120.0" text="Delete Test" />
+                </children>
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>

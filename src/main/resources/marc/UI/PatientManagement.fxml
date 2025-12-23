@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="700.0" prefWidth="990.0" stylesheets="@../../css/PatientMAnagement.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marc.Controllers.PatientManagementController">
+
+    <children>
+        <!-- Patient Management Panel -->
+        <VBox fx:id="patientPanel" alignment="TOP_CENTER" prefHeight="700.0" prefWidth="990.0" spacing="8.0">
+            <children>
+                <!-- Title -->
+                <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Patient Management" />
+
+                <!-- Search Section -->
+                <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="953.0" spacing="10.0">
+                    <children>
+                        <TextField fx:id="searchPatientField" prefWidth="500.0" promptText="Search patients..." />
+                    </children>
+                </HBox>
+
+                <!-- TableView for Patients -->
+                <TableView fx:id="patientTable" editable="true" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="957.0">
+                    <columns>
+                        <TableColumn fx:id="colPatientID" prefWidth="120.0" text="Patient ID" />
+                        <TableColumn fx:id="colFirstNamePatient" prefWidth="130.0" text="First Name" />
+                        <TableColumn fx:id="colLastNamePatient" prefWidth="130.0" text="Last Name" />
+                        <TableColumn fx:id="colEmailPatient" prefWidth="130.0" text="Email" />
+                        <TableColumn fx:id="colPhoneNumberPatient" prefWidth="110.0" text="Phone Number" />
+                        <TableColumn fx:id="colDateOfBirthPatient" prefWidth="110.0" text="Date of Birth" />
+                        <TableColumn fx:id="colGenderPatient" prefWidth="110.0" text="Gender" />
+                        <TableColumn fx:id="colHeightPatient" prefWidth="110.0" text="Height (cm)" />
+                        <TableColumn fx:id="colWeightPatient" prefWidth="110.0" text="Weight (kg)" />
+                        <TableColumn fx:id="colBloodGroupPatient" prefWidth="110.0" text="Blood Group" />
+                        <TableColumn fx:id="colIsActivePatient" prefWidth="110.0" text="Is Active" />
+                    </columns>
+                </TableView>
+
+                <!-- Buttons for Patient Actions -->
+                <HBox alignment="CENTER" spacing="10.0">
+                    <children>
+                        <Button fx:id="btnRegisterPatient" onAction="#showRegisterPatientPanel" prefHeight="30.0" prefWidth="161.0" text="Register New Patient" />
+                        <Button fx:id="btnUpdatePatient" onAction="#editPatient" prefWidth="150.0" text="Update Patient" />
+                        <Button fx:id="btnDeletePatient" onAction="#handleDeletePatient" prefWidth="150.0" text="Delete Patient" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+
+        <!-- Register Panel for Patient -->
+        <VBox fx:id="registerPatientPanel" alignment="TOP_CENTER" prefHeight="700.0" prefWidth="990.0" spacing="20.0" visible="false">
+            <children>
+                <!-- Title -->
+                <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Register Patient" />
+
+                <!-- Form fields with labels -->
+                <VBox alignment="CENTER" spacing="10.0">
+                    <HBox alignment="CENTER" spacing="10.0">
+                        <Label alignment="CENTER_RIGHT" prefWidth="120.0" text="First Name:" style="-fx-font-size: 14px; -fx-font-weight: normal;"/>
+                        <TextField fx:id="firstNameFieldPatient" prefWidth="400.0" promptText="Enter First Name" />
+                    </HBox>
+
+                    <HBox alignment="CENTER" spacing="10.0">
+                        <Label alignment="CENTER_RIGHT" prefWidth="120.0" text="Last Name:" style="-fx-font-size: 14px; -fx-font-weight: normal;"/>
+                        <TextField fx:id="lastNameFieldPatient" prefWidth="400.0" promptText="Enter Last Name" />
+                    </HBox>
+
+                    <HBox alignment="CENTER" spacing="10.0">
+                        <Label alignment="CENTER_RIGHT" prefWidth="120.0" text="Email:" style="-fx-font-size: 14px; -fx-font-weight: normal;"/>
+                        <TextField fx:id="emailFieldPatient" prefWidth="400.0" promptText="Enter Email" />
+                    </HBox>
+
+                    <HBox alignment="CENTER" spacing="10.0">
+                        <Label alignment="CENTER_RIGHT" prefWidth="120.0" text="Phone Number:" style="-fx-font-size: 14px; -fx-font-weight: normal;"/>
+                        <TextField fx:id="phoneNumberFieldPatient" prefWidth="400.0" promptText="Enter Phone Number" />
+                    </HBox>
+
+                    <HBox alignment="CENTER" spacing="10.0">
+                        <Label alignment="CENTER_RIGHT" prefWidth="120.0" text="Gender:" style="-fx-font-size: 14px; -fx-font-weight: normal;"/>
+                        <ComboBox fx:id="genderDropdownPatient" prefWidth="400.0" promptText="Select Gender">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Male" />
+                                    <String fx:value="Female" />
+                                    <String fx:value="Other" />
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                    </HBox>
+
+                    <HBox alignment="CENTER" spacing="10.0">
+                        <Label alignment="CENTER_RIGHT" prefWidth="120.0" text="Date of Birth:" style="-fx-font-size: 14px; -fx-font-weight: normal;"/>
+                        <DatePicker fx:id="dateOfBirthPickerPatient" prefWidth="400.0" promptText="Select Date of Birth" />
+                    </HBox>
+
+                    <HBox alignment="CENTER" spacing="10.0">
+                        <Label alignment="CENTER_RIGHT" prefWidth="120.0" text="Height (cm):" style="-fx-font-size: 14px; -fx-font-weight: normal;"/>
+                        <TextField fx:id="heightFieldPatient" prefWidth="400.0" promptText="Enter Height" />
+                    </HBox>
+
+                    <HBox alignment="CENTER" spacing="10.0">
+                        <Label alignment="CENTER_RIGHT" prefWidth="120.0" text="Weight (kg):" style="-fx-font-size: 14px; -fx-font-weight: normal;"/>
+                        <TextField fx:id="weightFieldPatient" prefWidth="400.0" promptText="Enter Weight" />
+                    </HBox>
+
+                    <HBox alignment="CENTER" spacing="10.0">
+                        <Label alignment="CENTER_RIGHT" prefWidth="120.0" text="Blood Group:" style="-fx-font-size: 14px; -fx-font-weight: normal;"/>
+                        <ComboBox fx:id="bloodGroupDropdownPatient" prefWidth="400.0" promptText="Select Blood Group">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="A+" />
+                                    <String fx:value="A-" />
+                                    <String fx:value="B+" />
+                                    <String fx:value="B-" />
+                                    <String fx:value="O+" />
+                                    <String fx:value="O-" />
+                                    <String fx:value="AB+" />
+                                    <String fx:value="AB-" />
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                    </HBox>
+
+                    <HBox alignment="CENTER" spacing="10.0">
+                        <CheckBox fx:id="isActiveCheckboxPatient" disable="true" selected="true" text="Is Active?" />
+                    </HBox>
+                </VBox>
+
+                <!-- Buttons -->
+                <HBox alignment="CENTER" spacing="10.0">
+                    <children>
+                        <Button fx:id="submitButtonPatient" onAction="#handleSubmitPatient" prefWidth="100.0" text="Submit" />
+                        <Button onAction="#showPatientPanel" prefWidth="100.0" text="Back" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

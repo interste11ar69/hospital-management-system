@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="700.0" prefWidth="990.0" stylesheets="@../../css/Home.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marc.Controllers.HomeController">
+
+    <children>
+        <!-- Home Panel -->
+        <VBox fx:id="homePanel" alignment="TOP_CENTER" prefHeight="700.0" prefWidth="990.0" spacing="10.0">
+            <TabPane prefHeight="700.0" prefWidth="950.0" tabClosingPolicy="UNAVAILABLE">
+                <tabs>
+                    <!-- Employees Tab -->
+                    <Tab text="Employees">
+                        <content>
+                            <AnchorPane>
+                                <TableView fx:id="employeeInfoTable" editable="true">
+                                    <AnchorPane.topAnchor>10.0</AnchorPane.topAnchor>
+                                    <AnchorPane.bottomAnchor>10.0</AnchorPane.bottomAnchor>
+                                    <AnchorPane.leftAnchor>10.0</AnchorPane.leftAnchor>
+                                    <AnchorPane.rightAnchor>10.0</AnchorPane.rightAnchor>
+                                    <columns>
+                                        <TableColumn fx:id="colEmployeeIDEmployeeInfo" prefWidth="120.0" text="Employee ID" />
+                                        <TableColumn fx:id="colFirstNameEmployeeInfo" prefWidth="150.0" text="First Name" />
+                                        <TableColumn fx:id="colLastNameEmployeeInfo" prefWidth="150.0" text="Last Name" />
+                                        <TableColumn fx:id="colGenderEmployeeInfo" prefWidth="100.0" text="Gender" />
+                                        <TableColumn fx:id="colDateOfBirthEmployeeInfo" prefWidth="120.0" text="Date of Birth" />
+                                        <TableColumn fx:id="colPhoneNumberEmployeeInfo" prefWidth="120.0" text="Phone Number" />
+                                        <TableColumn fx:id="colRoleEmployeeInfo" prefWidth="120.0" text="Role" />
+                                        <TableColumn fx:id="colDepartmentEmployeeInfo" prefWidth="120.0" text="Department" />
+                                    </columns>
+                                </TableView>
+                            </AnchorPane>
+                        </content>
+                    </Tab>
+
+                    <!-- Active Patients Tab -->
+                    <Tab text="Active Patients">
+                        <content>
+                            <AnchorPane>
+                                <TableView fx:id="activePatientTable" editable="true">
+                                    <AnchorPane.topAnchor>10.0</AnchorPane.topAnchor>
+                                    <AnchorPane.bottomAnchor>10.0</AnchorPane.bottomAnchor>
+                                    <AnchorPane.leftAnchor>10.0</AnchorPane.leftAnchor>
+                                    <AnchorPane.rightAnchor>10.0</AnchorPane.rightAnchor>
+                                    <columns>
+                                        <TableColumn fx:id="colPatientIDActivePatient" prefWidth="120.0" text="Patient ID" />
+                                        <TableColumn fx:id="colFirstNameActivePatient" prefWidth="150.0" text="First Name" />
+                                        <TableColumn fx:id="colLastNameActivePatient" prefWidth="150.0" text="Last Name" />
+                                        <TableColumn fx:id="colDateOfBirthActivePatient" prefWidth="120.0" text="Date of Birth" />
+                                        <TableColumn fx:id="colGenderActivePatient" prefWidth="100.0" text="Gender" />
+                                        <TableColumn fx:id="colPhoneNumberActivePatient" prefWidth="150.0" text="Phone Number" />
+                                        <TableColumn fx:id="colBloodGroupActivePatient" prefWidth="150.0" text="Blood Group" />
+                                    </columns>
+                                </TableView>
+                            </AnchorPane>
+                        </content>
+                    </Tab>
+
+                    <!-- Patient Appointment Tab -->
+                    <Tab text="Patient Appointment">
+                        <content>
+                            <AnchorPane>
+                                <TableView fx:id="patientAppointmentsTable" editable="true" layoutX="121.0" layoutY="10.0" prefHeight="627.0" prefWidth="743.0">
+                                    <AnchorPane.topAnchor>10.0</AnchorPane.topAnchor>
+                                    <AnchorPane.bottomAnchor>10.0</AnchorPane.bottomAnchor>
+                                    <AnchorPane.leftAnchor>121.0</AnchorPane.leftAnchor>
+                                    <AnchorPane.rightAnchor>102.0</AnchorPane.rightAnchor>
+                                    <columns>
+                                        <TableColumn fx:id="colPatientIDPatientAppointment" prefWidth="120.0" text="Patient ID" />
+                                        <TableColumn fx:id="colFirstNamePatientAppointment" prefWidth="150.0" text="First Name" />
+                                        <TableColumn fx:id="colLastNamePatientAppointment" prefWidth="150.0" text="Last Name" />
+                                        <TableColumn fx:id="colAppointmentDatePatientAppointment" prefWidth="150.0" text="Appointment Date" />
+                                        <TableColumn fx:id="colAppointmentStatusPatientAppointment" prefWidth="150.0" text="Appointment Status" />
+                                    </columns>
+                                </TableView>
+                            </AnchorPane>
+                        </content>
+                    </Tab>
+
+                    <!-- Patient Attendant Tab -->
+                    <Tab text="Patient Attendant">
+                        <content>
+                            <AnchorPane>
+                                <TableView fx:id="patientAttendantsTable" editable="true">
+                                    <AnchorPane.topAnchor>10.0</AnchorPane.topAnchor>
+                                    <AnchorPane.bottomAnchor>10.0</AnchorPane.bottomAnchor>
+                                    <AnchorPane.leftAnchor>10.0</AnchorPane.leftAnchor>
+                                    <AnchorPane.rightAnchor>10.0</AnchorPane.rightAnchor>
+                                    <columns>
+                                        <TableColumn fx:id="colPatientIDPatientAttendant" prefWidth="120.0" text="Patient ID" />
+                                        <TableColumn fx:id="colFirstNamePatientAttendant" prefWidth="150.0" text="First Name" />
+                                        <TableColumn fx:id="colLastNamePatientAttendant" prefWidth="150.0" text="Last Name" />
+                                        <TableColumn fx:id="colEmployeeIDPatientAttendant" prefWidth="120.0" text="Employee ID" />
+                                        <TableColumn fx:id="colEmployeeNumberPatientAttendant" prefWidth="150.0" text="Employee Number" />
+                                        <TableColumn fx:id="colAttendantFirstNamePatientAttendant" prefWidth="150.0" text="Attendant First Name" />
+                                        <TableColumn fx:id="colAttendantLastNamePatientAttendant" prefWidth="150.0" text="Attendant Last Name" />
+                                    </columns>
+                                </TableView>
+                            </AnchorPane>
+                        </content>
+                    </Tab>
+
+                    <!-- Patient Disease Tab -->
+                    <Tab text="Patient Disease">
+                        <content>
+                            <AnchorPane>
+                                <TableView fx:id="patientDiseaseHistoryTable" editable="true" layoutX="38.0" layoutY="10.0" prefHeight="627.0" prefWidth="890.0">
+                                    <AnchorPane.topAnchor>10.0</AnchorPane.topAnchor>
+                                    <AnchorPane.bottomAnchor>10.0</AnchorPane.bottomAnchor>
+                                    <AnchorPane.leftAnchor>38.0</AnchorPane.leftAnchor>
+                                    <AnchorPane.rightAnchor>38.0</AnchorPane.rightAnchor>
+                                    <columns>
+                                        <TableColumn fx:id="colPatientRegisterIDPatientDiseaseHistory" prefWidth="120.0" text="Patient Register ID" />
+                                        <TableColumn fx:id="colFirstNamePatientDiseaseHistory" prefWidth="150.0" text="First Name" />
+                                        <TableColumn fx:id="colLastNamePatientDiseaseHistory" prefWidth="150.0" text="Last Name" />
+                                        <TableColumn fx:id="colDiseaseNamePatientDiseaseHistory" prefWidth="150.0" text="Disease Name" />
+                                        <TableColumn fx:id="colAdmissionDatePatientDiseaseHistory" prefWidth="150.0" text="Admission Date" />
+                                        <TableColumn fx:id="colDischargeDatePatientDiseaseHistory" prefWidth="150.0" text="Discharge Date" />
+                                    </columns>
+                                </TableView>
+                            </AnchorPane>
+                        </content>
+                    </Tab>
+
+                    <!-- Patient Lab Report Tab -->
+                    <Tab text="Patient Lab Report">
+                        <content>
+                            <AnchorPane>
+                                <TableView fx:id="patientLabResultsTable" editable="true">
+                                    <AnchorPane.topAnchor>10.0</AnchorPane.topAnchor>
+                                    <AnchorPane.bottomAnchor>10.0</AnchorPane.bottomAnchor>
+                                    <AnchorPane.leftAnchor>10.0</AnchorPane.leftAnchor>
+                                    <AnchorPane.rightAnchor>10.0</AnchorPane.rightAnchor>
+                                    <columns>
+                                        <TableColumn fx:id="colPatientIDPatientLabResults" prefWidth="120.0" text="Patient Register ID" />
+                                        <TableColumn fx:id="colFirstNamePatientLabResults" prefWidth="150.0" text="First Name" />
+                                        <TableColumn fx:id="colLastNamePatientLabResults" prefWidth="150.0" text="Last Name" />
+                                        <TableColumn fx:id="colTestNamePatientLabResults" prefWidth="150.0" text="Test Name" />
+                                        <TableColumn fx:id="colResultPatientLabResults" prefWidth="250.0" text="Result" />
+                                        <TableColumn fx:id="colTestDatePatientLabResults" prefWidth="150.0" text="Test Date" />
+                                    </columns>
+                                </TableView>
+                            </AnchorPane>
+                        </content>
+                    </Tab>
+                </tabs>
+            </TabPane>
+        </VBox>
+    </children>
+</AnchorPane>

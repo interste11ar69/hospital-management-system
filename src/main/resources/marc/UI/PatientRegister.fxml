@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="700.0" prefWidth="990.0" stylesheets="@../../css/Register.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marc.Controllers.PatientRegisterManagementController">
+
+    <children>
+        <!-- Patient Management Panel -->
+        <VBox fx:id="RegisteredpatientPanel" alignment="TOP_CENTER" prefHeight="700.0" prefWidth="990.0" spacing="8.0">
+
+            <!-- Title -->
+            <HBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="290.0">
+                <Label prefHeight="36.0" prefWidth="400.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Patient Register Management" />
+            </HBox>
+            <Label style="-fx-font-size: 14px;" text="Manage patient register details here." />
+
+            <!-- Search Bar -->
+            <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="947.0" spacing="10.0">
+                <TextField fx:id="searchRegisteredPatientField" prefWidth="500.0" promptText="Search patient registered..." />
+            </HBox>
+
+            <!-- Table View for Patient Register -->
+            <TableView fx:id="patientRegisterTable" editable="true" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="950.0">
+                <columns>
+                    <TableColumn fx:id="colPatientRegisterID" prefWidth="124.0" text="Patient Register ID" />
+                    <TableColumn fx:id="colPatientId" prefWidth="116.0" text="Patient ID" />
+                    <TableColumn fx:id="colPatientName" prefWidth="180.0" text="Patient Name" />
+                    <TableColumn fx:id="colAdmittedOn" prefWidth="130.0" text="Admitted On" />
+                    <TableColumn fx:id="colDischargeOn" prefWidth="130.0" text="Discharge On" />
+                    <TableColumn fx:id="colRoomNumber" prefWidth="110.0" text="Room Number" />
+                    <TableColumn fx:id="colCreatedOn" prefWidth="145.0" text="Created On" />
+                    <TableColumn fx:id="colModifiedOn" prefWidth="127.33331298828125" text="Modified On" />
+                    <TableColumn fx:id="colIsActive" prefWidth="98.66668701171875" text="Is Active" />
+                </columns>
+            </TableView>
+
+            <!-- Buttons for Patient Register Actions -->
+            <HBox alignment="CENTER" spacing="10.0">
+                <Button fx:id="btnRegisterPatientAdmitted" onAction="#showAdmitPatientPanel" prefWidth="180.0" text="Register Patient" />
+                <Button fx:id="btnUpdateRegisteredPatient" onAction="#editPatientRegister" prefWidth="140.0" text="Update Patient" />
+                <Button fx:id="btnDeleteRegisteredPatient" onAction="#handleDeletePatientRegister" prefWidth="140.0" text="Delete Patient" />
+            </HBox>
+        </VBox>
+
+        <!-- Patient Register Panel for Register/Edit -->
+        <VBox fx:id="AdmitPatient" alignment="CENTER" prefHeight="700.0" prefWidth="990.0" spacing="15.0" visible="false">
+
+            <!-- Title -->
+            <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Register or Edit Patient Register" />
+
+            <!-- Form Fields for Patient Register Details -->
+
+            <!-- Patient Dropdown -->
+            <HBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="479.0" spacing="10.0">
+                <Label text="Patient:" />
+                <ComboBox fx:id="patientDropdown" prefHeight="42.0" prefWidth="369.0" promptText="Select Patient" />
+            </HBox>
+
+            <!-- Admitted On -->
+            <HBox alignment="CENTER" spacing="10.0">
+                <Label text="Admitted On:" />
+                <DatePicker fx:id="admittedOnPicker" prefWidth="400.0" promptText="Admitted On" />
+            </HBox>
+
+            <!-- Discharge On -->
+            <HBox alignment="CENTER" spacing="10.0">
+                <Label text="Discharge On:" />
+                <DatePicker fx:id="dischargeOnPicker" disable="true" prefWidth="400.0" promptText="Discharge On" />
+            </HBox>
+
+            <!-- Room Number -->
+            <HBox alignment="CENTER" spacing="10.0">
+                <Label text="Room Number:" />
+                <TextField fx:id="roomNumberField" prefHeight="35.0" prefWidth="400.0" promptText="Enter Room Number" />
+            </HBox>
+
+            <!-- Is Active Checkbox -->
+            <HBox alignment="CENTER" spacing="10.0">
+                <Label text="Is Active:" />
+                <CheckBox fx:id="isActiveCheckbox" disable="true" text="Is Active?" />
+            </HBox>
+
+            <!-- Submit and Back Buttons -->
+            <HBox alignment="CENTER" spacing="10.0">
+                <Button fx:id="submitPatientRegisterButton" onAction="#handleSubmitPatientRegister" prefWidth="120.0" text="Submit" />
+                <Button onAction="#showRegisteredPatientPanel" prefWidth="120.0" text="Back" />
+            </HBox>
+        </VBox>
+
+
+    </children>
+</AnchorPane>

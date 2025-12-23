@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="700.0" prefWidth="990.0" stylesheets="@../../css/LabTest.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marc.Controllers.LabTestManagementController">
+
+    <children>
+        <!-- Lab Test Management Panel -->
+        <VBox fx:id="labTestPanel" alignment="TOP_CENTER" prefHeight="700.0" prefWidth="990.0" spacing="8.0">
+
+            <!-- Title -->
+            <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Lab Test Management" />
+
+            <!-- Search Bar -->
+            <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="701.0" spacing="10.0">
+                <TextField fx:id="searchLabTestField" prefWidth="500.0" promptText="Search lab tests..." />
+            </HBox>
+
+            <!-- Table View for Lab Tests -->
+            <TableView fx:id="labTestTable" editable="true" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="700.0">
+                <columns>
+                    <TableColumn fx:id="labTestIdColumn" prefWidth="150.0" text="Test ID" />
+                    <TableColumn fx:id="labTestNameColumn" prefWidth="250.0" text="Test Name" />
+                    <TableColumn fx:id="creationDateColumn" prefWidth="150.0" text="Creation Date" />
+                    <TableColumn fx:id="modifiedDateColumn" prefWidth="150.0" text="Modified Date" />
+                </columns>
+            </TableView>
+
+            <!-- Dropdown with Label -->
+            <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="500.0" spacing="10.0">
+                <children>
+                    <Label text="Select Test:" />
+                    <ComboBox fx:id="labTestDropdown" prefHeight="25.0" prefWidth="379.0" promptText="Select Test" />
+                </children>
+            </HBox>
+
+            <!-- CRUD Options -->
+            <HBox alignment="CENTER" spacing="10.0">
+                <Button fx:id="addLabTestButton" onAction="#handleSubmitLabTest" prefWidth="120.0" text="Add Lab Test" />
+                <Button fx:id="updateLabTestButton" onAction="#editLabTest" prefHeight="30.0" prefWidth="138.0" text="Update Lab Test" />
+                <Button fx:id="deleteLabTestButton" onAction="#handleDeleteLabTest" prefHeight="30.0" prefWidth="127.0" text="Delete Lab Test" />
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>

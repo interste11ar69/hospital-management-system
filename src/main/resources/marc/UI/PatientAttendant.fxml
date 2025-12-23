@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="700.0" prefWidth="990.0" stylesheets="@../../css/PatientAttendant.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marc.Controllers.PatientAttendantManagementController">
+
+    <children>
+        <VBox fx:id="patientAttendantPanel" alignment="TOP_CENTER" prefHeight="700.0" prefWidth="990.0" spacing="8.0">
+
+            <!-- Title -->
+            <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Patient Attendant Management" />
+
+            <!-- Search Section -->
+            <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="970.0" spacing="10.0">
+                <TextField fx:id="searchAttendantField" prefHeight="38.0" prefWidth="889.0" promptText="Search Patient Attendant" />
+            </HBox>
+
+            <!-- Table for displaying attendants -->
+            <TableView fx:id="patientAttendantTable" editable="true" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="970.0">
+                <columns>
+                    <TableColumn fx:id="colPatientRegisterIDAttendant" prefWidth="180.0" text="Patient Register ID" />
+                    <TableColumn fx:id="colPatientNameAttendant" prefWidth="180.0" text="Patient Name" />
+                    <TableColumn fx:id="colEmployeeID" prefWidth="180.0" text="Employee ID" />
+                    <TableColumn fx:id="colEmployeeNameAttendant" prefWidth="180.0" text="Employee Name" />
+                    <TableColumn fx:id="colIsActiveAttendant" prefWidth="100.0" text="Is Active" />
+                    <TableColumn fx:id="colCreatedOnAttendant" prefWidth="140.0" text="Created On" />
+                    <TableColumn fx:id="colModifiedOnAttendant" prefWidth="140.0" text="Modified On" />
+                </columns>
+            </TableView>
+
+            <!-- Input Section -->
+            <HBox alignment="CENTER" spacing="10.0">
+                <Label style="-fx-font-size: 12px; -fx-font-weight: normal;" text="Patient" />
+                <ComboBox fx:id="patientRegisterIDAttendantDropdown" prefWidth="240.0" promptText="Select Patient Register ID" />
+
+                <Label style="-fx-font-size: 12px; -fx-font-weight: normal;" text="Employee" />
+                <ComboBox fx:id="patientAttendantDropdown" prefWidth="240.0" promptText="Select Employee" />
+
+                <CheckBox fx:id="isActiveAttendantCheckBox" disable="true" selected="true" text="Is Active" />
+            </HBox>
+
+            <!-- Action Buttons -->
+            <HBox alignment="CENTER" spacing="10.0">
+                <Button fx:id="handleAddAttendant" onAction="#handleAddAttendant" prefWidth="120.0" text="Add" />
+                <Button fx:id="handleUpdateAttendant" onAction="#handleUpdateAttendant" prefWidth="120.0" text="Update" />
+                <Button fx:id="handleDeleteAttendant" onAction="#handleDeleteAttendant" prefWidth="120.0" text="Delete" />
+            </HBox>
+
+        </VBox>
+    </children>
+</AnchorPane>

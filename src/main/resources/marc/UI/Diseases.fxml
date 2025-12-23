@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="700.0" prefWidth="990.0" stylesheets="@../../css/Disease.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marc.Controllers.DiseaseManagementController">
+
+    <children>
+        <!-- Diseases Panel -->
+        <VBox fx:id="diseasesPanel" alignment="TOP_CENTER" prefHeight="700.0" prefWidth="990.0" spacing="10.0">
+
+            <!-- Title -->
+            <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Disease Management" />
+             <TextField fx:id="searchDiseaseField" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="500.0" promptText="Search diseases..." />
+
+            <!-- Table -->
+            <TableView fx:id="diseaseTable" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0">
+                <columns>
+                    <TableColumn fx:id="diseaseIdColumn" prefWidth="250.0" text="Disease ID" />
+                    <TableColumn fx:id="diseaseNameColumn" prefWidth="250.0" text="Disease Name" />
+                </columns>
+            </TableView>
+
+            <!-- Input Fields -->
+            <HBox alignment="CENTER" prefWidth="990.0" spacing="10.0">
+                <TextField fx:id="diseaseNameField" prefWidth="500.0" promptText="Enter Disease Name" />
+            </HBox>
+
+            <!-- Action Buttons -->
+            <HBox alignment="CENTER" prefWidth="990.0" spacing="10.0">
+                <Button fx:id="addDiseaseButton" onAction="#handleAddDisease" prefWidth="150.0" text="Add Disease" />
+                <Button fx:id="updateDiseaseButton" onAction="#handleUpdateDisease" prefWidth="150.0" text="Update Disease" />
+                <Button fx:id="deleteDiseaseButton" onAction="#handleDeleteDisease" prefWidth="150.0" text="Delete Disease" />
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>

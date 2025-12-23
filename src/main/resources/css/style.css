@@ -1,0 +1,499 @@
+/* Root container (AnchorPane) */
+.anchor-pane {
+    /* Soft Sakura pink gradient background */
+    -fx-background-color: linear-gradient(to bottom, rgba(255, 240, 245, 0.9), rgba(255, 230, 235, 0.9)),
+                          linear-gradient(to bottom, #f8d5d3, #f5b8b1); /* Layered sakura-like gradients */
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-padding: 15;
+    -fx-border-color: rgba(255, 200, 200, 0.5);
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 4);
+    -fx-background-blend-mode: overlay;
+}
+
+/* Glow on hover */
+.anchor-pane:hover {
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.4), 20, 0.3, 0, 2),
+                 dropshadow(gaussian, rgba(0, 0, 0, 0.1), 15, 0, 0, 4);
+}
+
+/* Text style for elements inside AnchorPane (if applicable) */
+.anchor-pane .text {
+    -fx-font-family: "San Francisco", "Arial", sans-serif;
+    -fx-font-size: 10px;
+    -fx-fill: #3f2a3d; /* Deep rose color */
+    -fx-opacity: 0.9;
+}
+
+/* Left panel (VBox) */
+.vbox {
+    -fx-background-color: #fff0f6; /* Soft pinkish background */
+    -fx-border-color: #f1c0c8; /* Light pink border */
+    -fx-border-width: 0.5;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 5;
+    -fx-spacing: 5;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 3, 0, 0, 1);
+}
+
+/* Pane inside VBox */
+.vbox .pane {
+    -fx-background-color: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(245, 245, 245, 0.8)),
+                          linear-gradient(to bottom, #fafafa, #ebebeb);
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+    -fx-border-color: linear-gradient(to bottom, rgba(200, 200, 200, 0.8), rgba(150, 150, 150, 0.3));
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 8, 0, 0, 2);
+    -fx-padding: 10;
+    -fx-background-blend-mode: overlay;
+}
+
+/* Hover effect for the pane */
+.vbox .pane:hover {
+    -fx-background-color: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(240, 240, 240, 0.9)),
+                          linear-gradient(to bottom, #ffffff, #f6d0d0);
+    -fx-border-color: rgba(180, 180, 180, 0.7);
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.3), 12, 0.2, 0, 0),
+                 dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0.2, 0, 2);
+    -fx-cursor: hand;
+}
+
+/* Buttons */
+.vbox .button {
+    -fx-background-color: linear-gradient(to bottom, #ffd1dc, #f3a8b8); /* Sakura pink gradient */
+    -fx-text-fill: #3f2a3d; /* Deep rose text */
+    -fx-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-border-color: #f1c0c8;
+    -fx-border-width: 0.5;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 5 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 1, 0, 0, 1);
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+/* Subtle hover effect */
+.vbox .button:hover {
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #f0e3e1);
+    -fx-border-color: #d5a4a0;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.5), 10, 0.5, 0, 0);
+    -fx-cursor: hand;
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+}
+
+/* Active button state */
+.vbox .button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #e4b5b3, #d8a2a0);
+    -fx-effect: innershadow(two-pass-box, rgba(0, 0, 0, 0.3), 4, 0.3, 0, 1);
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+/* Root Panel (Roles Management VBox) */
+.roles-panel {
+    -fx-background-color: linear-gradient(to bottom, #fbe0e6, #f1c9d2); /* Soft pastel gradient */
+    -fx-border-color: #f8b7c1; /* Soft pinkish border */
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 20;
+    -fx-spacing: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 8, 0, 0, 2);
+}
+
+/* Label (Role Management Header) */
+.roles-panel .label {
+    -fx-font-family: "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ba4f5e; /* Soft rose color */
+    -fx-padding: 5 0;
+}
+
+/* TableView */
+.roles-panel .table-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #f1c0c8;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 5;
+    -fx-effect: dropshadow(gaussian, rgba(255, 192, 203, 0.1), 5, 0, 0, 2);
+}
+
+/* TableColumn */
+.roles-panel .table-view .column-header-background {
+    -fx-background-color: linear-gradient(to bottom, #fbe0e6, #f1c9d2);
+    -fx-border-color: #f8b7c1;
+    -fx-border-width: 0 0 1 0;
+}
+
+.roles-panel .table-view .column-header .label {
+    -fx-font-family: "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ba4f5e;
+}
+
+/* TextField */
+.roles-panel .text-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #f1c0c8;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 5 10;
+    -fx-font-family: "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: #3f2a3d;
+    -fx-effect: dropshadow(gaussian, rgba(255, 192, 203, 0.05), 3, 0, 0, 1);
+}
+
+/* Buttons */
+.roles-panel .button {
+    -fx-background-color: linear-gradient(to bottom, #f8d5d3, #f1b0b0);
+    -fx-border-color: #f1c0c8;
+    -fx-border-width: 1;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-font-family: "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -fx-font-size: 12px;
+    -fx-text-fill: #3f2a3d;
+    -fx-padding: 8 15;
+    -fx-effect: dropshadow(gaussian, rgba(255, 192, 203, 0.2), 5, 0, 0, 2);
+}
+
+.roles-panel .button:hover {
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #f6d3d1);
+    -fx-border-color: #f1c0c8;
+    -fx-cursor: hand;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.roles-panel .button:pressed {
+    -fx-background-color: #f0a4a0;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+/* Alert box */
+.alert-box {
+    -fx-background-color: linear-gradient(to bottom, #ffe6f0, #f9c7d5); /* Light sakura pink */
+    -fx-border-color: #f1b3c1;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
+    -fx-padding: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 5);
+}
+/* TextField */
+.text-field {
+    -fx-background-color: #ffffff; /* White background for clarity */
+    -fx-border-color: #f1c0c8; /* Soft pink border */
+    -fx-border-radius: 6; /* Rounded corners */
+    -fx-background-radius: 6; /* Rounded background */
+    -fx-padding: 5 10;
+    -fx-font-family: "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: #3f2a3d; /* Deep rose text color */
+    -fx-effect: dropshadow(gaussian, rgba(255, 192, 203, 0.05), 3, 0, 0, 1); /* Soft shadow for depth */
+}
+
+/* TextField Hover Effect */
+.text-field:hover {
+    -fx-border-color: #f1b7c3; /* Slightly darker pink on hover */
+    -fx-background-color: #fff9fb; /* Very light pink on hover */
+}
+
+/* TableView */
+.table-view {
+    -fx-background-color: #ffffff; /* White background for table */
+    -fx-border-color: #f1c0c8; /* Soft pink border around the table */
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 5;
+    -fx-effect: dropshadow(gaussian, rgba(255, 192, 203, 0.1), 5, 0, 0, 2); /* Subtle shadow for table */
+}
+
+/* Table Column Header */
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(to bottom, #fbe0e6, #f1c9d2); /* Soft pastel pink gradient for header */
+    -fx-border-color: #f1b7c3; /* Light pink border for column header */
+    -fx-border-width: 0 0 1 0;
+}
+
+/* Table Column Header Text */
+.table-view .column-header .label {
+    -fx-font-family: "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ba4f5e; /* Soft rose color for text */
+}
+
+/* Table Row */
+.table-view .table-row-cell {
+    -fx-background-color: #fff0f6; /* Light pink background for rows */
+    -fx-text-fill: #3f2a3d; /* Deep rose text color */
+}
+
+/* Table Row Hover Effect */
+.table-view .table-row-cell:hover {
+    -fx-background-color: #f7d2d9; /* Slightly darker pink when hovering over rows */
+}
+
+/* Table Cell */
+.table-view .table-cell {
+    -fx-background-color: #ffffff; /* White background for table cells */
+    -fx-text-fill: #3f2a3d; /* Deep rose text color */
+    -fx-padding: 8;
+    -fx-font-family: "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -fx-font-size: 13px;
+    -fx-border-color: #f1c0c8;
+    -fx-border-width: 0 0 1 0; /* Light pink border at the bottom of cells */
+}
+
+/* Table Cell Hover Effect */
+.table-view .table-cell:hover {
+    -fx-background-color: #f7d2d9; /* Light pink background on hover */
+    -fx-text-fill: #ba4f5e; /* Soft rose text color */
+}
+
+/* Alternating Table Row Color */
+.table-view .table-row-cell:nth-child(even) {
+    -fx-background-color: #fdf2f4; /* Even rows with a lighter pink */
+}
+/* Buttons */
+.button {
+    -fx-background-color: linear-gradient(to bottom, #fbe4ea, #f6cbd7); /* Soft Sakura pink gradient */
+    -fx-border-color: #f1b7c3; /* Soft pink border */
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-font-family: "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #3f2a3d; /* Deep rose text */
+    -fx-padding: 8 15;
+    -fx-effect: dropshadow(gaussian, rgba(255, 192, 203, 0.2), 3, 0, 0, 1); /* Soft shadow */
+    -fx-cursor: hand;
+}
+
+/* Button Hover Effect */
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #fff0f6, #f8d5de); /* Brighter Sakura hover gradient */
+    -fx-border-color: #f1b0bd; /* Slightly darker pink border */
+    -fx-scale-x: 1.05; /* Slight scale on hover */
+    -fx-scale-y: 1.05;
+    -fx-effect: dropshadow(gaussian, rgba(255, 192, 203, 0.4), 6, 0, 0, 2); /* Stronger glow on hover */
+}
+
+/* Button Pressed Effect */
+.button:pressed {
+    -fx-background-color: #f3a8b8; /* Darker pink for pressed state */
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+    -fx-effect: innershadow(two-pass-box, rgba(0, 0, 0, 0.3), 4, 0, 0, 1); /* Inner shadow */
+}
+
+/* Dropdown (ComboBox) */
+.combo-box {
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #fdf2f5); /* Soft white-pink gradient */
+    -fx-border-color: #f1b7c3; /* Soft pink border */
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-font-family: "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: #3f2a3d; /* Deep rose text */
+    -fx-padding: 5 10;
+    -fx-effect: dropshadow(gaussian, rgba(255, 192, 203, 0.1), 3, 0, 0, 1); /* Subtle shadow */
+}
+
+/* Dropdown Hover */
+.combo-box:hover {
+    -fx-border-color: #f3a8b8; /* Darker pink border on hover */
+    -fx-background-color: linear-gradient(to bottom, #fff9fc, #fde0e6); /* Subtle light pink gradient */
+}
+
+/* Dropdown Arrow */
+.combo-box .arrow-button {
+    -fx-background-color: linear-gradient(to bottom, #fbe4ea, #f6cbd7); /* Same gradient as button */
+    -fx-border-color: #f1b7c3;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+
+/* Dropdown Arrow Hover */
+.combo-box .arrow-button:hover {
+    -fx-background-color: #f3a8b8; /* Darker pink for arrow hover */
+}
+
+/* Dropdown List */
+.combo-box-popup {
+    -fx-background-color: #fff0f6; /* Light Sakura pink background */
+    -fx-border-color: #f1b7c3; /* Soft pink border */
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(gaussian, rgba(255, 192, 203, 0.3), 5, 0, 0, 2); /* Shadow for dropdown */
+}
+
+/* TableView */
+.table-view {
+    -fx-background-color: #ffffff; /* White table background */
+    -fx-border-color: #f1c0c8; /* Soft pink border */
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 5;
+    -fx-effect: dropshadow(gaussian, rgba(255, 192, 203, 0.1), 5, 0, 0, 2); /* Subtle shadow */
+}
+
+/* Table Header */
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(to bottom, #fbe0e6, #f1c9d2); /* Pastel pink gradient for header */
+    -fx-border-color: #f1b7c3;
+    -fx-border-width: 0 0 1 0;
+}
+
+.table-view .column-header .label {
+    -fx-font-family: "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ba4f5e; /* Soft rose text */
+}
+
+/* Table Rows */
+.table-view .table-row-cell {
+    -fx-background-color: #fff0f6; /* Light pink for rows */
+    -fx-text-fill: #3f2a3d; /* Deep rose text color */
+}
+
+/* Table Row Hover */
+.table-view .table-row-cell:hover {
+    -fx-background-color: #f7d2d9; /* Darker pink on hover */
+}
+
+/* Alternating Row Colors */
+.table-view .table-row-cell:nth-child(even) {
+    -fx-background-color: #fdf2f4; /* Lighter pink for alternating rows */
+}
+
+/* Table Cells */
+.table-view .table-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #3f2a3d; /* Deep rose text color */
+    -fx-padding: 8;
+    -fx-border-color: #f1c0c8;
+    -fx-border-width: 0 0 1 0; /* Light pink border */
+}
+
+/* Scrollbars */
+.scroll-bar {
+    -fx-background-color: #fbe4ea; /* Light pink for scrollbar track */
+    -fx-border-radius: 6;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #f1b7c3; /* Soft pink for scrollbar thumb */
+    -fx-background-radius: 6;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #f3a8b8; /* Darker pink for thumb hover */
+}
+
+/* Panels (VBox and HBox) */
+.vbox, .hbox {
+    -fx-background-color: #fff5f9; /* Soft light pink background */
+    -fx-border-color: #f1c0c8; /* Subtle pink border */
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 10;
+    -fx-spacing: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 3, 0, 0, 1); /* Subtle shadow for depth */
+}
+/* Table Header */
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(to bottom, #fbe0e6, #f1c9d2); /* Pastel pink gradient for header */
+    -fx-border-color: #f1b7c3;
+    -fx-border-width: 0 0 1 0;
+}
+
+.table-view .column-header .label {
+    -fx-font-family: "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ba4f5e !important; /* Ensures the column header text color is rose-pink */
+}
+
+/* Additional Table Column Header Adjustments (if needed) */
+.table-view .column-header .label {
+    -fx-text-fill: #ba4f5e !important; /* Force override of default color */
+}
+
+/* Table Row - Selected */
+.table-view .table-row-cell:focused,
+.table-view .table-row-cell:selected {
+    -fx-background-color: #f9d0da; /* Light pink background for selected row */
+    -fx-text-fill: #ba4f5e; /* Rose-pink text color for selected row */
+}
+
+/* Table Row - Hover (optional) */
+.table-view .table-row-cell:hover {
+    -fx-background-color: #f8b8d1; /* Slightly lighter pink for hover */
+    -fx-text-fill: #ba4f5e; /* Keep the text color consistent */
+}
+
+/* TabPane styling */
+.tab-pane {
+    -fx-background-color: linear-gradient(to bottom, rgba(255, 240, 245, 0.9), rgba(255, 230, 235, 0.9)),
+                          linear-gradient(to bottom, #f8d5d3, #f5b8b1); /* Layered sakura-like gradients */
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-padding: 10;
+    -fx-border-color: rgba(255, 200, 200, 0.5);
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 4);
+    -fx-background-blend-mode: overlay;
+}
+
+
+/* Hover effect for tabs */
+.tab:hover {
+    -fx-background-color: linear-gradient(to bottom, rgba(255, 220, 240, 0.9), rgba(255, 210, 225, 0.9));
+    -fx-border-color: rgba(255, 180, 180, 0.7);
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.4), 10, 0.3, 0, 2),
+                 dropshadow(gaussian, rgba(0, 0, 0, 0.1), 12, 0.3, 0, 4);
+}
+
+/* Active tab styling */
+.tab:selected {
+    -fx-background-color: linear-gradient(to bottom, rgba(255, 220, 240, 0.9), rgba(255, 210, 225, 0.9));
+    -fx-border-color: rgba(255, 180, 180, 0.7);
+}
+
+/* Tab content area styling */
+.tab-content {
+    -fx-background-color: #fff0f6; /* Soft pinkish background */
+    -fx-border-radius: 15;
+    -fx-padding: 15;
+    -fx-background-radius: 15;
+    -fx-border-color: #f1c0c8; /* Light pink border */
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 3, 0, 0, 2);
+}
+
+/* Center-align text in all table cells */
+.table-view .table-cell {
+    -fx-alignment: CENTER;
+}
+
+/* Optional: Center-align column headers */
+.table-view .column-header {
+    -fx-alignment: CENTER;
+}
+
+
