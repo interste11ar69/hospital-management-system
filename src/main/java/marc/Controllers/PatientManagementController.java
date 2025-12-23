@@ -14,213 +14,137 @@ import java.util.List;
 
 public class PatientManagementController {
 
-    // FXML Elements
-    @FXML
-    private VBox patientPanel, registerPatientPanel;
+    // FXML Elements linked to the View
+    @FXML private VBox patientPanel; // Left Side (List)
+    @FXML private VBox registerPatientPanel; // Right Side (Form)
 
-    @FXML
-    private TableView<Patient> patientTable;
+    @FXML private TableView<Patient> patientTable;
+    @FXML private TableColumn<Patient, Integer> colPatientID;
+    @FXML private TableColumn<Patient, String> colFirstNamePatient;
+    @FXML private TableColumn<Patient, String> colLastNamePatient;
+    @FXML private TableColumn<Patient, String> colEmailPatient;
+    @FXML private TableColumn<Patient, String> colPhoneNumberPatient;
+    @FXML private TableColumn<Patient, LocalDate> colDateOfBirthPatient;
+    @FXML private TableColumn<Patient, String> colGenderPatient;
+    @FXML private TableColumn<Patient, Double> colHeightPatient;
+    @FXML private TableColumn<Patient, Double> colWeightPatient;
+    @FXML private TableColumn<Patient, String> colBloodGroupPatient;
+    @FXML private TableColumn<Patient, Boolean> colIsActivePatient;
 
-    @FXML
-    private TableColumn<Patient, Integer> colPatientID;
-    @FXML
-    private TableColumn<Patient, String> colFirstNamePatient;
-    @FXML
-    private TableColumn<Patient, String> colLastNamePatient;
-    @FXML
-    private TableColumn<Patient, String> colEmailPatient;
-    @FXML
-    private TableColumn<Patient, String> colPhoneNumberPatient;
-    @FXML
-    private TableColumn<Patient, LocalDate> colDateOfBirthPatient;
-    @FXML
-    private TableColumn<Patient, String> colGenderPatient;
-    @FXML
-    private TableColumn<Patient, Double> colHeightPatient;
-    @FXML
-    private TableColumn<Patient, Double> colWeightPatient;
-    @FXML
-    private TableColumn<Patient, String> colBloodGroupPatient;
-    @FXML
-    private TableColumn<Patient, Boolean> colIsActivePatient;
+    @FXML private TextField firstNameFieldPatient, lastNameFieldPatient, emailFieldPatient, phoneNumberFieldPatient, searchPatientField, heightFieldPatient, weightFieldPatient;
+    @FXML private ComboBox<String> genderDropdownPatient, bloodGroupDropdownPatient;
+    @FXML private DatePicker dateOfBirthPickerPatient;
+    @FXML private CheckBox isActiveCheckboxPatient;
 
-    @FXML
-    private TextField firstNameFieldPatient, lastNameFieldPatient, emailFieldPatient, phoneNumberFieldPatient, searchPatientField, heightFieldPatient, weightFieldPatient;
-    @FXML
-    private ComboBox<String> genderDropdownPatient, bloodGroupDropdownPatient;
-    @FXML
-    private DatePicker dateOfBirthPickerPatient;
-    @FXML
-    private CheckBox isActiveCheckboxPatient;
-    @FXML
-    private Button submitButtonPatient;
+    // Buttons
+    @FXML private Button submitButtonPatient;
+    @FXML private Button btnDeletePatient; // We will enable/disable this
 
-    // DAO for database operations
+    // Data Handling
     private final PatientDAO patientDAO = new PatientDAO();
-
-    // Observable list to hold patient data
-    private ObservableList<Patient> patientsData;
-
-    // Selected patient for update
-    private Patient selectedPatient;
+    private ObservableList<Patient> patientsData = FXCollections.observableArrayList();
+    private Patient selectedPatient = null; // Tracks who is currently being edited
 
     @FXML
     private void initialize() {
         setupTableColumns();
         loadPatients();
         setupDynamicPatientSearch();
-        submitButtonPatient.setText("Submit"); // Default action for new patients
+        setupTableSelectionListener();
+        prepareNewEntry();
     }
 
-    // Set up table columns
     private void setupTableColumns() {
-        colPatientID.setCellValueFactory(data -> data.getValue().patientIDProperty().asObject());
+        // Standard String Columns
         colFirstNamePatient.setCellValueFactory(data -> data.getValue().firstNameProperty());
         colLastNamePatient.setCellValueFactory(data -> data.getValue().lastNameProperty());
+        colGenderPatient.setCellValueFactory(data -> data.getValue().genderProperty()); // Now visible
+
+        // --- FIXED STATUS COLUMN (No more "true/false") ---
+        colIsActivePatient.setCellValueFactory(data -> data.getValue().isActiveProperty());
+        colIsActivePatient.setCellFactory(column -> new TableCell<>() {
+            @Override
+            protected void updateItem(Boolean isActive, boolean empty) {
+                super.updateItem(isActive, empty);
+                if (empty || isActive == null) {
+                    setText(null);
+                    setStyle("");
+                } else {
+                    // 1. Set Text
+                    setText(isActive ? "Active" : "Inactive");
+
+                    // 2. Set Color (Green for Active, Red for Inactive)
+                    if (isActive) {
+                        setStyle("-fx-text-fill: #10b981; -fx-font-weight: bold;");
+                    } else {
+                        setStyle("-fx-text-fill: #ef4444; -fx-font-weight: bold;");
+                    }
+                }
+            }
+        });
+
+        // These ID columns are needed for logic but hidden
+        colPatientID.setCellValueFactory(data -> data.getValue().patientIDProperty().asObject());
         colEmailPatient.setCellValueFactory(data -> data.getValue().emailIDProperty());
         colPhoneNumberPatient.setCellValueFactory(data -> data.getValue().phoneNumberProperty());
         colDateOfBirthPatient.setCellValueFactory(data -> data.getValue().dateOfBirthProperty());
-        colGenderPatient.setCellValueFactory(data -> data.getValue().genderProperty());
         colHeightPatient.setCellValueFactory(data -> data.getValue().heightProperty().asObject());
         colWeightPatient.setCellValueFactory(data -> data.getValue().weightProperty().asObject());
         colBloodGroupPatient.setCellValueFactory(data -> data.getValue().bloodGroupProperty());
-        colIsActivePatient.setCellValueFactory(data -> data.getValue().isActiveProperty().asObject());
     }
 
-    // Load patients from the database
+    // 2. LOAD DATA
     private void loadPatients() {
         try {
             List<Patient> patientList = patientDAO.getAllPatients();
-            patientsData = FXCollections.observableArrayList(patientList);
+            patientsData.setAll(patientList);
             patientTable.setItems(patientsData);
         } catch (SQLException e) {
             showError("Error loading patients: " + e.getMessage());
         }
     }
 
-    // Handle patient submission (new or update)
-    @FXML
-    private void handleSubmitPatient() {
-        try {
-            // Collect form data
-            String firstName = firstNameFieldPatient.getText().trim();
-            String lastName = lastNameFieldPatient.getText().trim();
-            String email = emailFieldPatient.getText().trim();
-            String phoneNumber = phoneNumberFieldPatient.getText().trim();
-            String gender = genderDropdownPatient.getValue();
-            LocalDate dateOfBirth = dateOfBirthPickerPatient.getValue();
-            Double height = heightFieldPatient.getText().isEmpty() ? 0 : Double.parseDouble(heightFieldPatient.getText().trim());
-            Double weight = weightFieldPatient.getText().isEmpty() ? 0 : Double.parseDouble(weightFieldPatient.getText().trim());
-            String bloodGroup = bloodGroupDropdownPatient.getValue();
-            boolean isActive = isActiveCheckboxPatient.isSelected();
+    // 3. MASTER-DETAIL LISTENER (The Magic Part)
+    private void setupTableSelectionListener() {
+        patientTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                // A row was clicked: Populate the form
+                selectedPatient = newSelection;
+                populateForm(selectedPatient);
 
-            // Validate required fields
-            if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || phoneNumber.isEmpty()
-                    || gender == null || dateOfBirth == null || bloodGroup == null) {
-                showError("Please fill in all required fields.");
-                return;
+                // Change UI state to "Edit Mode"
+                submitButtonPatient.setText("Update Record");
+                btnDeletePatient.setDisable(false); // Enable delete
             }
-
-            if ("Update".equalsIgnoreCase(submitButtonPatient.getText())) {
-                // Handle update
-                if (selectedPatient == null) {
-                    showError("No patient selected for update.");
-                    return;
-                }
-
-                // Update patient fields
-                selectedPatient.setFirstName(firstName);
-                selectedPatient.setLastName(lastName);
-                selectedPatient.setEmailID(email);
-                selectedPatient.setPhoneNumber(phoneNumber);
-                selectedPatient.setGender(gender);
-                selectedPatient.setDateOfBirth(dateOfBirth);
-                selectedPatient.setHeight(height);
-                selectedPatient.setWeight(weight);
-                selectedPatient.setBloodGroup(bloodGroup);
-                selectedPatient.setIsActive(isActive);
-
-                // Update patient in database
-                patientDAO.updatePatient(selectedPatient);
-
-                // Reload table and clear form
-                loadPatients();
-                clearFormPatient();
-                showPatientPanel();
-                showInfo("Patient updated successfully.");
-
-            } else {
-                // Handle new patient registration
-                Patient newPatient = new Patient(
-                        0, // PatientID will be auto-generated by the database
-                        firstName, lastName, dateOfBirth, gender, phoneNumber,
-                        email, height, weight, bloodGroup, isActive, null, null
-                );
-
-                // Insert the new patient into the database
-                patientDAO.createPatient(newPatient);
-
-                // Reload table and clear form
-                loadPatients();
-                clearFormPatient();
-                showPatientPanel();
-                showInfo("Patient registered successfully.");
-            }
-        } catch (NumberFormatException e) {
-            showError("Invalid numeric input for height or weight.");
-        } catch (SQLException e) {
-            showError("Error saving patient: " + e.getMessage());
-        }
+        });
     }
 
-    // Edit a patient
+    // Fill the right-side form with data
+    private void populateForm(Patient p) {
+        firstNameFieldPatient.setText(p.getFirstName());
+        lastNameFieldPatient.setText(p.getLastName());
+        emailFieldPatient.setText(p.getEmailID());
+        phoneNumberFieldPatient.setText(p.getPhoneNumber());
+        genderDropdownPatient.setValue(p.getGender());
+        dateOfBirthPickerPatient.setValue(p.getDateOfBirth());
+        heightFieldPatient.setText(String.valueOf(p.getHeight()));
+        weightFieldPatient.setText(String.valueOf(p.getWeight()));
+        bloodGroupDropdownPatient.setValue(p.getBloodGroup());
+        isActiveCheckboxPatient.setSelected(p.getIsActive());
+    }
+
+    // 4. "NEW PATIENT" BUTTON LOGIC
     @FXML
-    private void editPatient() {
-        selectedPatient = patientTable.getSelectionModel().getSelectedItem();
-        if (selectedPatient == null) {
-            showError("Please select a patient to edit.");
-            return;
-        }
-
-        // Populate the form with the selected patient's data
-        firstNameFieldPatient.setText(selectedPatient.getFirstName());
-        lastNameFieldPatient.setText(selectedPatient.getLastName());
-        emailFieldPatient.setText(selectedPatient.getEmailID());
-        phoneNumberFieldPatient.setText(selectedPatient.getPhoneNumber());
-        genderDropdownPatient.setValue(selectedPatient.getGender());
-        dateOfBirthPickerPatient.setValue(selectedPatient.getDateOfBirth());
-        heightFieldPatient.setText(String.valueOf(selectedPatient.getHeight()));
-        weightFieldPatient.setText(String.valueOf(selectedPatient.getWeight()));
-        bloodGroupDropdownPatient.setValue(selectedPatient.getBloodGroup());
-        isActiveCheckboxPatient.setSelected(selectedPatient.getIsActive());
-
-        // Change the submit button text to "Update"
-        submitButtonPatient.setText("Update");
-
-        // Show the registration panel
-        showPanel(registerPatientPanel);
+    private void showRegisterPatientPanel() {
+        prepareNewEntry();
     }
 
-    // Delete a patient
-    @FXML
-    private void handleDeletePatient() {
-        Patient selectedPatient = patientTable.getSelectionModel().getSelectedItem();
-        if (selectedPatient == null) {
-            showError("Please select a patient to delete.");
-            return;
-        }
+    // Clears the form so you can type a new person
+    private void prepareNewEntry() {
+        selectedPatient = null; // No patient selected
+        patientTable.getSelectionModel().clearSelection(); // Deselect table
 
-        try {
-            patientDAO.deletePatient(selectedPatient.getPatientID());
-            loadPatients(); // Reload the patient list
-            showInfo("Patient deleted successfully.");
-        } catch (SQLException e) {
-            showError("Error deleting patient: " + e.getMessage());
-        }
-    }
-
-    // Clear the patient form
-    private void clearFormPatient() {
+        // Clear fields
         firstNameFieldPatient.clear();
         lastNameFieldPatient.clear();
         emailFieldPatient.clear();
@@ -230,75 +154,122 @@ public class PatientManagementController {
         heightFieldPatient.clear();
         weightFieldPatient.clear();
         bloodGroupDropdownPatient.setValue(null);
+        isActiveCheckboxPatient.setSelected(true); // Default to Active
 
-        submitButtonPatient.setText("Submit");
+        // UI State: "Add Mode"
+        submitButtonPatient.setText("Save New Patient");
+        btnDeletePatient.setDisable(true); // Cannot delete a new entry
+
+        // Ensure both panels are visible (Fixes "Table Disappears" bug)
+        patientPanel.setVisible(true);
+        registerPatientPanel.setVisible(true);
     }
 
-    // Show the patient management panel
+    // 5. SAVE / UPDATE LOGIC
     @FXML
-    private void showPatientPanel() {
-        showPanel(patientPanel);
+    private void handleSubmitPatient() {
+        try {
+            // Collect Data
+            String firstName = firstNameFieldPatient.getText().trim();
+            String lastName = lastNameFieldPatient.getText().trim();
+            // ... (Basic validation)
+            if (firstName.isEmpty() || lastName.isEmpty()) {
+                showError("Name fields are required.");
+                return;
+            }
+
+            if (selectedPatient != null) {
+                // UPDATE EXISTING
+                updatePatientObject(selectedPatient); // Helper to set fields
+                patientDAO.updatePatient(selectedPatient);
+                showInfo("Patient record updated.");
+            } else {
+                // CREATE NEW
+                Patient newPatient = new Patient(0, firstName, lastName,
+                        dateOfBirthPickerPatient.getValue(),
+                        genderDropdownPatient.getValue(),
+                        phoneNumberFieldPatient.getText(),
+                        emailFieldPatient.getText(),
+                        parseDoub(heightFieldPatient.getText()),
+                        parseDoub(weightFieldPatient.getText()),
+                        bloodGroupDropdownPatient.getValue(),
+                        isActiveCheckboxPatient.isSelected(), null, null);
+
+                patientDAO.createPatient(newPatient);
+                showInfo("New patient registered.");
+            }
+
+            // Refresh List
+            loadPatients();
+            prepareNewEntry(); // Reset form
+
+        } catch (SQLException e) {
+            showError("Database Error: " + e.getMessage());
+        }
     }
 
-    // Show a specific panel
-    private void showPanel(VBox panelToShow) {
-        patientPanel.setVisible(false);
-        registerPatientPanel.setVisible(false);
-        panelToShow.setVisible(true);
+    private void updatePatientObject(Patient p) {
+        p.setFirstName(firstNameFieldPatient.getText());
+        p.setLastName(lastNameFieldPatient.getText());
+        p.setEmailID(emailFieldPatient.getText());
+        p.setPhoneNumber(phoneNumberFieldPatient.getText());
+        p.setGender(genderDropdownPatient.getValue());
+        p.setDateOfBirth(dateOfBirthPickerPatient.getValue());
+        p.setHeight(parseDoub(heightFieldPatient.getText()));
+        p.setWeight(parseDoub(weightFieldPatient.getText()));
+        p.setBloodGroup(bloodGroupDropdownPatient.getValue());
+        p.setIsActive(isActiveCheckboxPatient.isSelected());
     }
 
-    // Show an error message
-    private void showError(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setContentText(message);
-        alert.showAndWait();
+    // 6. DELETE LOGIC
+    @FXML
+    private void handleDeletePatient() {
+        if (selectedPatient == null) return;
+
+        try {
+            patientDAO.deletePatient(selectedPatient.getPatientID());
+            showInfo("Record deleted.");
+            loadPatients();
+            prepareNewEntry();
+        } catch (SQLException e) {
+            showError("Could not delete: " + e.getMessage());
+        }
     }
 
-    // Show an informational message
-    private void showInfo(String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText(message);
-        alert.showAndWait();
+    // Helper for safe double parsing
+    private double parseDoub(String s) {
+        try { return Double.parseDouble(s); } catch (Exception e) { return 0.0; }
     }
 
-    // Dynamic search for patients
+    // Unused methods kept empty to prevent FXML errors if old buttons still link to them
+    @FXML private void editPatient() {}
+    @FXML private void showPatientPanel() {}
+
+    // Search Logic
     private void setupDynamicPatientSearch() {
-        searchPatientField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.isEmpty()) {
+        searchPatientField.textProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal.isEmpty()) {
                 patientTable.setItems(patientsData);
             } else {
-                String lowerCaseQuery = newValue.toLowerCase();
-
-                List<Patient> filteredPatients = patientsData.stream()
-                        .filter(patient -> {
-                            // Combine first and last name for full name search
-                            String fullName = (patient.getFirstName() + " " + patient.getLastName()).toLowerCase();
-
-                            return patient.getFirstName().toLowerCase().contains(lowerCaseQuery)
-                                    || patient.getLastName().toLowerCase().contains(lowerCaseQuery)
-                                    || fullName.contains(lowerCaseQuery); // Match full name
-                        })
+                String lower = newVal.toLowerCase();
+                List<Patient> filtered = patientsData.stream()
+                        .filter(p -> p.getFirstName().toLowerCase().contains(lower)
+                                || p.getLastName().toLowerCase().contains(lower))
                         .toList();
-
-                patientTable.setItems(FXCollections.observableArrayList(filteredPatients));
+                patientTable.setItems(FXCollections.observableArrayList(filtered));
             }
         });
     }
 
-    // Show the Register Patient panel
-    @FXML
-    private void showRegisterPatientPanel() {
-        // Hide the Patient Management Panel
-        patientPanel.setVisible(false);
-
-        // Clear the form fields in the Register Patient Panel
-        clearFormPatient();
-
-        // Show the Register Patient Panel
-        registerPatientPanel.setVisible(true);
+    private void showError(String msg) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setContentText(msg);
+        alert.show();
     }
 
-
-
-
+    private void showInfo(String msg) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText(msg);
+        alert.show();
+    }
 }

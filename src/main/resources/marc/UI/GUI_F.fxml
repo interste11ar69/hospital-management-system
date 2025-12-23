@@ -1,37 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane focusTraversable="true" prefHeight="750.0" prefWidth="1250.0" stylesheets="@../../css/GUI_F.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marc.GUI_FController">
+<BorderPane fx:id="mainContainer" prefHeight="750.0" prefWidth="1250.0"
+            stylesheets="@../../css/industrial_theme.css"
+            xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="marc.GUI_FController">
 
-    <!-- Sidebar Navigation -->
-    <VBox prefHeight="750.0" prefWidth="200.0" stylesheets="@../../css/GUI_F.css">
-        <children>
-            <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="749.0" prefWidth="200.0" spacing="10.0" stylesheets="@../../css/GUI_F.css">
-                <children>
-                    <Button fx:id="HomeButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="180.0" text="Home" />
-                    <Button fx:id="PatientRegisterButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="180.0" text="Register Patient" />
-                    <Button fx:id="PatientsButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="180.0" text="Patients" />
-                    <Button fx:id="PatientAttendantButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="180.0" text="Patient Attendant" />
-                    <Button fx:id="LabReportButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="180.0" text="Lab Report" />
-                    <Button fx:id="PatientAppointmentButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="180.0" text="Appointment" />
-                    <Button fx:id="LabTestButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="180.0" text="Lab Test" />
-                    <Button fx:id="PatientDiseaseButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="180.0" text="Patient Disease" />
-                    <Button fx:id="EmployeeButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="180.0" text="Employee" />
-                    <Button fx:id="RoleButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="180.0" text="Roles" />
-                    <Button fx:id="DepartmentButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="180.0" text="Departments" />
-                    <Button fx:id="DiseasesButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="180.0" text="Diseases" />
-                    <Button fx:id="TestsButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="180.0" text="Tests" />
-                </children>
-            </VBox>
-        </children>
-    </VBox>
+    <!-- LEFT SIDEBAR -->
+    <left>
+        <VBox prefWidth="240.0" styleClass="sidebar" spacing="0">
+            <!-- App Logo/Title -->
+            <Label text="HOSPITAL MS" styleClass="sidebar-title">
+                <padding>
+                    <Insets top="20" left="20" bottom="20" right="20"/>
+                </padding>
+            </Label>
 
-    <!-- Main Content Area -->
-    <VBox fx:id="mainPane" layoutX="200.0" layoutY="0.0" prefHeight="750.0" prefWidth="1050.0">
-        <!-- Dynamically loaded panes will appear here -->
-    </VBox>
+            <!-- Navigation Buttons -->
+            <Button fx:id="HomeButton" text="Dashboard" maxWidth="Infinity" styleClass="nav-button"/>
+            <Button fx:id="PatientRegisterButton" text="Admissions" maxWidth="Infinity" styleClass="nav-button"/>
+            <Button fx:id="PatientsButton" text="Patients" maxWidth="Infinity" styleClass="nav-button"/>
+            <Button fx:id="PatientAppointmentButton" text="Appointments" maxWidth="Infinity" styleClass="nav-button"/>
+            <Button fx:id="PatientAttendantButton" text="Attendants" maxWidth="Infinity" styleClass="nav-button"/>
+            <Button fx:id="LabReportButton" text="Lab Reports" maxWidth="Infinity" styleClass="nav-button"/>
+            <Button fx:id="LabTestButton" text="Lab Tests" maxWidth="Infinity" styleClass="nav-button"/>
+            <Button fx:id="PatientDiseaseButton" text="Disease History" maxWidth="Infinity" styleClass="nav-button"/>
+            <Button fx:id="EmployeeButton" text="Staff Management" maxWidth="Infinity" styleClass="nav-button"/>
+            <Button fx:id="DepartmentButton" text="Departments" maxWidth="Infinity" styleClass="nav-button"/>
+            <Button fx:id="RoleButton" text="Roles" maxWidth="Infinity" styleClass="nav-button"/>
+            <Button fx:id="DiseasesButton" text="Disease Registry" maxWidth="Infinity" styleClass="nav-button"/>
+            <Button fx:id="TestsButton" text="Test Registry" maxWidth="Infinity" styleClass="nav-button"/>
+        </VBox>
+    </left>
 
-</AnchorPane>
+    <!-- CENTER CONTENT -->
+    <center>
+        <!-- The ID 'mainPane' is kept here so your Controller still works without changes -->
+        <VBox fx:id="mainPane" styleClass="content-area">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <!-- Views load here -->
+        </VBox>
+    </center>
+</BorderPane>

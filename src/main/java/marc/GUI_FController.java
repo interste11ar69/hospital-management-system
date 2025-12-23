@@ -2,7 +2,7 @@ package marc;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.Pane;
+import javafx.scene.Parent; // <--- Changed from Pane to Parent
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
 
@@ -18,19 +18,20 @@ public class GUI_FController {
             LabReportButton, PatientAppointmentButton, LabTestButton, PatientDiseaseButton,
             EmployeeButton, RoleButton, DepartmentButton, DiseasesButton, TestsButton;
 
-    private Pane cachedHomePane;
-    private Pane cachedPatientRegisterPane;
-    private Pane cachedPatientsPane;
-    private Pane cachedPatientAttendantPane;
-    private Pane cachedLabReportPane;
-    private Pane cachedPatientAppointmentPane;
-    private Pane cachedLabTestPane;
-    private Pane cachedPatientDiseasePane;
-    private Pane cachedEmployeePane;
-    private Pane cachedRolePane;
-    private Pane cachedDepartmentPane;
-    private Pane cachedDiseasesPane;
-    private Pane cachedTestsPane;
+    // Cache stored as Parent to accept SplitPane, ScrollPane, etc.
+    private Parent cachedHomePane;
+    private Parent cachedPatientRegisterPane;
+    private Parent cachedPatientsPane;
+    private Parent cachedPatientAttendantPane;
+    private Parent cachedLabReportPane;
+    private Parent cachedPatientAppointmentPane;
+    private Parent cachedLabTestPane;
+    private Parent cachedPatientDiseasePane;
+    private Parent cachedEmployeePane;
+    private Parent cachedRolePane;
+    private Parent cachedDepartmentPane;
+    private Parent cachedDiseasesPane;
+    private Parent cachedTestsPane;
 
     @FXML
     private void initialize() {
@@ -106,9 +107,10 @@ public class GUI_FController {
         loadAndSwitchPane("Test.fxml", pane -> cachedTestsPane = pane);
     }
 
-    private void loadAndSwitchPane(String fxmlFile, java.util.function.Consumer<Pane> cacheSetter) {
+    // Changed Consumer<Pane> to Consumer<Parent>
+    private void loadAndSwitchPane(String fxmlFile, java.util.function.Consumer<Parent> cacheSetter) {
         try {
-            Pane pane = getCachedPane(fxmlFile);
+            Parent pane = getCachedPane(fxmlFile);
 
             if (pane == null) {
                 // Load FXML if not cached
@@ -127,7 +129,8 @@ public class GUI_FController {
         }
     }
 
-    private Pane getCachedPane(String fxmlFile) {
+    // Changed return type from Pane to Parent
+    private Parent getCachedPane(String fxmlFile) {
         // Return the cached Pane if it exists
         switch (fxmlFile) {
             case "Home.fxml":
@@ -146,7 +149,7 @@ public class GUI_FController {
                 return cachedLabTestPane;
             case "PatientDisease.fxml":
                 return cachedPatientDiseasePane;
-            case "EmployeeManagement.fxml.fxml":
+            case "EmployeeManagement.fxml": // Fixed Typo: removed extra .fxml
                 return cachedEmployeePane;
             case "Role.fxml":
                 return cachedRolePane;

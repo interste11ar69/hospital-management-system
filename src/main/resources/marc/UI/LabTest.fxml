@@ -6,48 +6,40 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
 
-<AnchorPane prefHeight="700.0" prefWidth="990.0" stylesheets="@../../css/LabTest.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marc.Controllers.LabTestManagementController">
+<VBox fx:id="labTestPanel" spacing="15.0" style="-fx-background-color: white; -fx-padding: 20;" stylesheets="@../../css/industrial_theme.css"
+      xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="marc.Controllers.LabTestManagementController">
 
-    <children>
-        <!-- Lab Test Management Panel -->
-        <VBox fx:id="labTestPanel" alignment="TOP_CENTER" prefHeight="700.0" prefWidth="990.0" spacing="8.0">
+    <HBox alignment="CENTER_LEFT" spacing="20">
+        <Label text="Lab Test Configuration" styleClass="header-label"/>
+        <Region HBox.hgrow="ALWAYS" />
+        <TextField fx:id="searchLabTestField" promptText="Search test types..." prefWidth="300" styleClass="text-field"/>
+    </HBox>
 
-            <!-- Title -->
-            <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Lab Test Management" />
+    <TableView fx:id="labTestTable" VBox.vgrow="ALWAYS" styleClass="table-view">
+        <columns>
+            <TableColumn fx:id="labTestIdColumn" text="Lab Test ID" prefWidth="100"/>
+            <TableColumn fx:id="labTestNameColumn" text="Test Name" prefWidth="300"/>
+            <TableColumn fx:id="creationDateColumn" text="Created On" prefWidth="150"/>
+            <TableColumn fx:id="modifiedDateColumn" text="Modified On" prefWidth="150"/>
+        </columns>
+        <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+        </columnResizePolicy>
+    </TableView>
 
-            <!-- Search Bar -->
-            <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="701.0" spacing="10.0">
-                <TextField fx:id="searchLabTestField" prefWidth="500.0" promptText="Search lab tests..." />
-            </HBox>
+    <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-background-color: #f8f9fa; -fx-padding: 15; -fx-background-radius: 4;">
+        <Label text="Manage:" style="-fx-font-weight: bold; -fx-text-fill: #64748b;"/>
+        <ComboBox fx:id="labTestDropdown" promptText="Select Base Test..." prefWidth="250"/>
 
-            <!-- Table View for Lab Tests -->
-            <TableView fx:id="labTestTable" editable="true" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="700.0">
-                <columns>
-                    <TableColumn fx:id="labTestIdColumn" prefWidth="150.0" text="Test ID" />
-                    <TableColumn fx:id="labTestNameColumn" prefWidth="250.0" text="Test Name" />
-                    <TableColumn fx:id="creationDateColumn" prefWidth="150.0" text="Creation Date" />
-                    <TableColumn fx:id="modifiedDateColumn" prefWidth="150.0" text="Modified Date" />
-                </columns>
-            </TableView>
+        <Region HBox.hgrow="ALWAYS" />
 
-            <!-- Dropdown with Label -->
-            <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="500.0" spacing="10.0">
-                <children>
-                    <Label text="Select Test:" />
-                    <ComboBox fx:id="labTestDropdown" prefHeight="25.0" prefWidth="379.0" promptText="Select Test" />
-                </children>
-            </HBox>
-
-            <!-- CRUD Options -->
-            <HBox alignment="CENTER" spacing="10.0">
-                <Button fx:id="addLabTestButton" onAction="#handleSubmitLabTest" prefWidth="120.0" text="Add Lab Test" />
-                <Button fx:id="updateLabTestButton" onAction="#editLabTest" prefHeight="30.0" prefWidth="138.0" text="Update Lab Test" />
-                <Button fx:id="deleteLabTestButton" onAction="#handleDeleteLabTest" prefHeight="30.0" prefWidth="127.0" text="Delete Lab Test" />
-            </HBox>
-        </VBox>
-    </children>
-</AnchorPane>
+        <Button fx:id="addLabTestButton" text="Add Configuration" onAction="#handleSubmitLabTest" styleClass="action-btn"/>
+        <Button fx:id="updateLabTestButton" text="Update" onAction="#editLabTest" styleClass="secondary-btn"/>
+        <Button fx:id="deleteLabTestButton" text="Delete" onAction="#handleDeleteLabTest" styleClass="delete-btn"/>
+    </HBox>
+</VBox>

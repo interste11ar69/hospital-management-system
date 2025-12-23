@@ -1,155 +1,180 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="700.0" prefWidth="990.0" stylesheets="@../../css/Home.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marc.Controllers.HomeController">
+<VBox fx:id="homePanel" spacing="20.0" stylesheets="@../../css/industrial_theme.css"
+      xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="marc.Controllers.HomeController">
 
-    <children>
-        <!-- Home Panel -->
-        <VBox fx:id="homePanel" alignment="TOP_CENTER" prefHeight="700.0" prefWidth="990.0" spacing="10.0">
-            <TabPane prefHeight="700.0" prefWidth="950.0" tabClosingPolicy="UNAVAILABLE">
-                <tabs>
-                    <!-- Employees Tab -->
-                    <Tab text="Employees">
-                        <content>
-                            <AnchorPane>
-                                <TableView fx:id="employeeInfoTable" editable="true">
-                                    <AnchorPane.topAnchor>10.0</AnchorPane.topAnchor>
-                                    <AnchorPane.bottomAnchor>10.0</AnchorPane.bottomAnchor>
-                                    <AnchorPane.leftAnchor>10.0</AnchorPane.leftAnchor>
-                                    <AnchorPane.rightAnchor>10.0</AnchorPane.rightAnchor>
-                                    <columns>
-                                        <TableColumn fx:id="colEmployeeIDEmployeeInfo" prefWidth="120.0" text="Employee ID" />
-                                        <TableColumn fx:id="colFirstNameEmployeeInfo" prefWidth="150.0" text="First Name" />
-                                        <TableColumn fx:id="colLastNameEmployeeInfo" prefWidth="150.0" text="Last Name" />
-                                        <TableColumn fx:id="colGenderEmployeeInfo" prefWidth="100.0" text="Gender" />
-                                        <TableColumn fx:id="colDateOfBirthEmployeeInfo" prefWidth="120.0" text="Date of Birth" />
-                                        <TableColumn fx:id="colPhoneNumberEmployeeInfo" prefWidth="120.0" text="Phone Number" />
-                                        <TableColumn fx:id="colRoleEmployeeInfo" prefWidth="120.0" text="Role" />
-                                        <TableColumn fx:id="colDepartmentEmployeeInfo" prefWidth="120.0" text="Department" />
-                                    </columns>
-                                </TableView>
-                            </AnchorPane>
-                        </content>
-                    </Tab>
-
-                    <!-- Active Patients Tab -->
-                    <Tab text="Active Patients">
-                        <content>
-                            <AnchorPane>
-                                <TableView fx:id="activePatientTable" editable="true">
-                                    <AnchorPane.topAnchor>10.0</AnchorPane.topAnchor>
-                                    <AnchorPane.bottomAnchor>10.0</AnchorPane.bottomAnchor>
-                                    <AnchorPane.leftAnchor>10.0</AnchorPane.leftAnchor>
-                                    <AnchorPane.rightAnchor>10.0</AnchorPane.rightAnchor>
-                                    <columns>
-                                        <TableColumn fx:id="colPatientIDActivePatient" prefWidth="120.0" text="Patient ID" />
-                                        <TableColumn fx:id="colFirstNameActivePatient" prefWidth="150.0" text="First Name" />
-                                        <TableColumn fx:id="colLastNameActivePatient" prefWidth="150.0" text="Last Name" />
-                                        <TableColumn fx:id="colDateOfBirthActivePatient" prefWidth="120.0" text="Date of Birth" />
-                                        <TableColumn fx:id="colGenderActivePatient" prefWidth="100.0" text="Gender" />
-                                        <TableColumn fx:id="colPhoneNumberActivePatient" prefWidth="150.0" text="Phone Number" />
-                                        <TableColumn fx:id="colBloodGroupActivePatient" prefWidth="150.0" text="Blood Group" />
-                                    </columns>
-                                </TableView>
-                            </AnchorPane>
-                        </content>
-                    </Tab>
-
-                    <!-- Patient Appointment Tab -->
-                    <Tab text="Patient Appointment">
-                        <content>
-                            <AnchorPane>
-                                <TableView fx:id="patientAppointmentsTable" editable="true" layoutX="121.0" layoutY="10.0" prefHeight="627.0" prefWidth="743.0">
-                                    <AnchorPane.topAnchor>10.0</AnchorPane.topAnchor>
-                                    <AnchorPane.bottomAnchor>10.0</AnchorPane.bottomAnchor>
-                                    <AnchorPane.leftAnchor>121.0</AnchorPane.leftAnchor>
-                                    <AnchorPane.rightAnchor>102.0</AnchorPane.rightAnchor>
-                                    <columns>
-                                        <TableColumn fx:id="colPatientIDPatientAppointment" prefWidth="120.0" text="Patient ID" />
-                                        <TableColumn fx:id="colFirstNamePatientAppointment" prefWidth="150.0" text="First Name" />
-                                        <TableColumn fx:id="colLastNamePatientAppointment" prefWidth="150.0" text="Last Name" />
-                                        <TableColumn fx:id="colAppointmentDatePatientAppointment" prefWidth="150.0" text="Appointment Date" />
-                                        <TableColumn fx:id="colAppointmentStatusPatientAppointment" prefWidth="150.0" text="Appointment Status" />
-                                    </columns>
-                                </TableView>
-                            </AnchorPane>
-                        </content>
-                    </Tab>
-
-                    <!-- Patient Attendant Tab -->
-                    <Tab text="Patient Attendant">
-                        <content>
-                            <AnchorPane>
-                                <TableView fx:id="patientAttendantsTable" editable="true">
-                                    <AnchorPane.topAnchor>10.0</AnchorPane.topAnchor>
-                                    <AnchorPane.bottomAnchor>10.0</AnchorPane.bottomAnchor>
-                                    <AnchorPane.leftAnchor>10.0</AnchorPane.leftAnchor>
-                                    <AnchorPane.rightAnchor>10.0</AnchorPane.rightAnchor>
-                                    <columns>
-                                        <TableColumn fx:id="colPatientIDPatientAttendant" prefWidth="120.0" text="Patient ID" />
-                                        <TableColumn fx:id="colFirstNamePatientAttendant" prefWidth="150.0" text="First Name" />
-                                        <TableColumn fx:id="colLastNamePatientAttendant" prefWidth="150.0" text="Last Name" />
-                                        <TableColumn fx:id="colEmployeeIDPatientAttendant" prefWidth="120.0" text="Employee ID" />
-                                        <TableColumn fx:id="colEmployeeNumberPatientAttendant" prefWidth="150.0" text="Employee Number" />
-                                        <TableColumn fx:id="colAttendantFirstNamePatientAttendant" prefWidth="150.0" text="Attendant First Name" />
-                                        <TableColumn fx:id="colAttendantLastNamePatientAttendant" prefWidth="150.0" text="Attendant Last Name" />
-                                    </columns>
-                                </TableView>
-                            </AnchorPane>
-                        </content>
-                    </Tab>
-
-                    <!-- Patient Disease Tab -->
-                    <Tab text="Patient Disease">
-                        <content>
-                            <AnchorPane>
-                                <TableView fx:id="patientDiseaseHistoryTable" editable="true" layoutX="38.0" layoutY="10.0" prefHeight="627.0" prefWidth="890.0">
-                                    <AnchorPane.topAnchor>10.0</AnchorPane.topAnchor>
-                                    <AnchorPane.bottomAnchor>10.0</AnchorPane.bottomAnchor>
-                                    <AnchorPane.leftAnchor>38.0</AnchorPane.leftAnchor>
-                                    <AnchorPane.rightAnchor>38.0</AnchorPane.rightAnchor>
-                                    <columns>
-                                        <TableColumn fx:id="colPatientRegisterIDPatientDiseaseHistory" prefWidth="120.0" text="Patient Register ID" />
-                                        <TableColumn fx:id="colFirstNamePatientDiseaseHistory" prefWidth="150.0" text="First Name" />
-                                        <TableColumn fx:id="colLastNamePatientDiseaseHistory" prefWidth="150.0" text="Last Name" />
-                                        <TableColumn fx:id="colDiseaseNamePatientDiseaseHistory" prefWidth="150.0" text="Disease Name" />
-                                        <TableColumn fx:id="colAdmissionDatePatientDiseaseHistory" prefWidth="150.0" text="Admission Date" />
-                                        <TableColumn fx:id="colDischargeDatePatientDiseaseHistory" prefWidth="150.0" text="Discharge Date" />
-                                    </columns>
-                                </TableView>
-                            </AnchorPane>
-                        </content>
-                    </Tab>
-
-                    <!-- Patient Lab Report Tab -->
-                    <Tab text="Patient Lab Report">
-                        <content>
-                            <AnchorPane>
-                                <TableView fx:id="patientLabResultsTable" editable="true">
-                                    <AnchorPane.topAnchor>10.0</AnchorPane.topAnchor>
-                                    <AnchorPane.bottomAnchor>10.0</AnchorPane.bottomAnchor>
-                                    <AnchorPane.leftAnchor>10.0</AnchorPane.leftAnchor>
-                                    <AnchorPane.rightAnchor>10.0</AnchorPane.rightAnchor>
-                                    <columns>
-                                        <TableColumn fx:id="colPatientIDPatientLabResults" prefWidth="120.0" text="Patient Register ID" />
-                                        <TableColumn fx:id="colFirstNamePatientLabResults" prefWidth="150.0" text="First Name" />
-                                        <TableColumn fx:id="colLastNamePatientLabResults" prefWidth="150.0" text="Last Name" />
-                                        <TableColumn fx:id="colTestNamePatientLabResults" prefWidth="150.0" text="Test Name" />
-                                        <TableColumn fx:id="colResultPatientLabResults" prefWidth="250.0" text="Result" />
-                                        <TableColumn fx:id="colTestDatePatientLabResults" prefWidth="150.0" text="Test Date" />
-                                    </columns>
-                                </TableView>
-                            </AnchorPane>
-                        </content>
-                    </Tab>
-                </tabs>
-            </TabPane>
+    <!-- 1. DASHBOARD METRICS -->
+    <HBox spacing="20.0">
+        <VBox styleClass="dashboard-card" HBox.hgrow="ALWAYS">
+            <Label text="TOTAL PATIENTS" styleClass="card-title"/>
+            <Label text="1,204" styleClass="card-value"/>
+            <Label text="+5% from last month" textFill="#10b981" style="-fx-font-size: 11px;"/>
         </VBox>
-    </children>
-</AnchorPane>
+
+        <VBox styleClass="dashboard-card" HBox.hgrow="ALWAYS">
+            <Label text="ACTIVE STAFF" styleClass="card-title"/>
+            <Label text="42" styleClass="card-value"/>
+            <Label text="Doctors &amp; Nurses" textFill="#94a3b8" style="-fx-font-size: 11px;"/>
+        </VBox>
+
+        <VBox styleClass="dashboard-card" HBox.hgrow="ALWAYS">
+            <Label text="APPOINTMENTS" styleClass="card-title"/>
+            <Label text="18" styleClass="card-value"/>
+            <Label text="3 Urgent" textFill="#ef4444" style="-fx-font-size: 11px;"/>
+        </VBox>
+
+        <VBox styleClass="dashboard-card" HBox.hgrow="ALWAYS">
+            <Label text="BED OCCUPANCY" styleClass="card-title"/>
+            <Label text="85%" styleClass="card-value"/>
+            <Label text="Ward A is full" textFill="#f59e0b" style="-fx-font-size: 11px;"/>
+        </VBox>
+    </HBox>
+
+    <!-- 2. DATA TABS -->
+    <VBox VBox.vgrow="ALWAYS" spacing="10">
+        <Label text="Hospital Records" styleClass="header-label" style="-fx-font-size: 18px;"/>
+
+        <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS" styleClass="tab-pane">
+            <tabs>
+                <!-- EMPLOYEES TAB -->
+                <Tab text="Staff Directory">
+                    <content>
+                        <AnchorPane styleClass="tab-content-area">
+                            <TableView fx:id="employeeInfoTable" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                <columns>
+                                    <TableColumn fx:id="colEmployeeIDEmployeeInfo" text="ID" prefWidth="60"/>
+                                    <TableColumn fx:id="colFirstNameEmployeeInfo" text="First Name" prefWidth="120"/>
+                                    <TableColumn fx:id="colLastNameEmployeeInfo" text="Last Name" prefWidth="120"/>
+                                    <TableColumn fx:id="colGenderEmployeeInfo" text="Gender" prefWidth="80"/>
+                                    <TableColumn fx:id="colDateOfBirthEmployeeInfo" text="DOB" prefWidth="100"/>
+                                    <TableColumn fx:id="colPhoneNumberEmployeeInfo" text="Phone" prefWidth="120"/>
+                                    <TableColumn fx:id="colRoleEmployeeInfo" text="Role" prefWidth="100"/>
+                                    <TableColumn fx:id="colDepartmentEmployeeInfo" text="Department" prefWidth="120"/>
+                                </columns>
+                                <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                                </columnResizePolicy>
+                            </TableView>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+
+                <!-- ACTIVE PATIENTS TAB -->
+                <Tab text="Active In-Patients">
+                    <content>
+                        <AnchorPane styleClass="tab-content-area">
+                            <TableView fx:id="activePatientTable" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                <columns>
+                                    <TableColumn fx:id="colPatientIDActivePatient" text="ID" prefWidth="60"/>
+                                    <TableColumn fx:id="colFirstNameActivePatient" text="First Name" prefWidth="120"/>
+                                    <TableColumn fx:id="colLastNameActivePatient" text="Last Name" prefWidth="120"/>
+                                    <TableColumn fx:id="colDateOfBirthActivePatient" text="DOB" prefWidth="100"/>
+                                    <TableColumn fx:id="colGenderActivePatient" text="Gender" prefWidth="80"/>
+                                    <TableColumn fx:id="colPhoneNumberActivePatient" text="Phone" prefWidth="120"/>
+                                    <TableColumn fx:id="colBloodGroupActivePatient" text="Blood Group" prefWidth="80"/>
+                                </columns>
+                                <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                                </columnResizePolicy>
+                            </TableView>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+
+                <!-- APPOINTMENTS TAB -->
+                <Tab text="Appointments">
+                    <content>
+                        <AnchorPane styleClass="tab-content-area">
+                            <TableView fx:id="patientAppointmentsTable" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                <columns>
+                                    <TableColumn fx:id="colPatientIDPatientAppointment" text="Patient ID" />
+                                    <TableColumn fx:id="colFirstNamePatientAppointment" text="First Name" />
+                                    <TableColumn fx:id="colLastNamePatientAppointment" text="Last Name" />
+                                    <TableColumn fx:id="colAppointmentDatePatientAppointment" text="Date/Time" />
+                                    <TableColumn fx:id="colAppointmentStatusPatientAppointment" text="Status" />
+                                </columns>
+                                <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                                </columnResizePolicy>
+                            </TableView>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+
+                <!-- ATTENDANTS TAB -->
+                <Tab text="Attendants">
+                    <content>
+                        <AnchorPane styleClass="tab-content-area">
+                            <TableView fx:id="patientAttendantsTable" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                <columns>
+                                    <TableColumn fx:id="colPatientIDPatientAttendant" text="Patient ID" />
+                                    <TableColumn fx:id="colFirstNamePatientAttendant" text="Patient First Name" />
+                                    <TableColumn fx:id="colLastNamePatientAttendant" text="Patient Last Name" />
+                                    <TableColumn fx:id="colEmployeeIDPatientAttendant" text="Emp ID" />
+                                    <TableColumn fx:id="colEmployeeNumberPatientAttendant" text="Emp Number" />
+                                    <TableColumn fx:id="colAttendantFirstNamePatientAttendant" text="Attendant First" />
+                                    <TableColumn fx:id="colAttendantLastNamePatientAttendant" text="Attendant Last" />
+                                </columns>
+                                <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                                </columnResizePolicy>
+                            </TableView>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+
+                <!-- DISEASE HISTORY TAB -->
+                <Tab text="Disease History">
+                    <content>
+                        <AnchorPane styleClass="tab-content-area">
+                            <TableView fx:id="patientDiseaseHistoryTable" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                <columns>
+                                    <TableColumn fx:id="colPatientRegisterIDPatientDiseaseHistory" text="Reg ID" />
+                                    <TableColumn fx:id="colFirstNamePatientDiseaseHistory" text="First Name" />
+                                    <TableColumn fx:id="colLastNamePatientDiseaseHistory" text="Last Name" />
+                                    <TableColumn fx:id="colDiseaseNamePatientDiseaseHistory" text="Disease" />
+                                    <TableColumn fx:id="colAdmissionDatePatientDiseaseHistory" text="Admission" />
+                                    <TableColumn fx:id="colDischargeDatePatientDiseaseHistory" text="Discharge" />
+                                </columns>
+                                <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                                </columnResizePolicy>
+                            </TableView>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+
+                <!-- LAB RESULTS TAB -->
+                <Tab text="Lab Results">
+                    <content>
+                        <AnchorPane styleClass="tab-content-area">
+                            <TableView fx:id="patientLabResultsTable" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                <columns>
+                                    <TableColumn fx:id="colPatientIDPatientLabResults" text="Reg ID" />
+                                    <TableColumn fx:id="colFirstNamePatientLabResults" text="First Name" />
+                                    <TableColumn fx:id="colLastNamePatientLabResults" text="Last Name" />
+                                    <TableColumn fx:id="colTestNamePatientLabResults" text="Test Name" />
+                                    <TableColumn fx:id="colResultPatientLabResults" text="Result" />
+                                    <TableColumn fx:id="colTestDatePatientLabResults" text="Date" />
+                                </columns>
+                                <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                                </columnResizePolicy>
+                            </TableView>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </VBox>
+</VBox>

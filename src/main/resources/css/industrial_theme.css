@@ -1,0 +1,221 @@
+/* industrial_theme.css - CORRECTED VERSION */
+.root {
+    /* Color Variables - Renamed to avoid recursion bugs */
+    -color-primary: #0056b3;       /* Professional Medical Blue */
+    -color-secondary: #f8f9fa;     /* Off-white background */
+    -color-sidebar: #1e293b;       /* Dark Slate */
+    -color-text: #333333;          /* Dark Grey */
+    -color-accent: #0ea5e9;        /* Light Blue accent */
+    -color-border: #dee2e6;        /* Subtle border grey */
+
+    /* Apply Background */
+    -fx-background-color: -color-secondary;
+    -fx-font-family: "Segoe UI", "Roboto", "Helvetica Neue", sans-serif;
+    -fx-font-size: 13px;
+}
+
+/* --- SIDEBAR STYLING --- */
+.sidebar {
+    -fx-background-color: -color-sidebar;
+}
+
+.sidebar-title {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-padding: 20 0 20 20;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #94a3b8; /* Muted text */
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12 20;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-background-radius: 0;
+}
+
+.nav-button:hover {
+    -fx-background-color: #334155;
+    -fx-text-fill: white;
+    -fx-border-color: transparent transparent transparent -color-accent;
+    -fx-border-width: 0 0 0 4;
+}
+
+.nav-button:focused {
+     -fx-background-color: #334155;
+     -fx-text-fill: white;
+}
+
+/* --- MAIN CONTENT AREA --- */
+.content-area {
+    -fx-background-color: white;
+    -fx-padding: 20;
+}
+
+.header-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1e293b;
+    -fx-padding: 0 0 15 0;
+}
+
+/* --- TABLE VIEW (Clean, No Grid Lines) --- */
+.table-view {
+    -fx-background-color: transparent; /* Remove white boxiness */
+    -fx-border-color: transparent;
+    -fx-effect: null;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: white;
+    -fx-border-color: transparent transparent #e2e8f0 transparent; /* Subtle bottom line */
+    -fx-border-width: 2px;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #94a3b8; /* Muted uppercase text */
+    -fx-font-weight: bold;
+    -fx-font-size: 11px;
+    -fx-alignment: CENTER-LEFT;
+}
+
+/* The Rows */
+.table-view .table-row-cell {
+    -fx-background-color: white;
+    -fx-border-color: transparent transparent #f1f5f9 transparent; /* Row separators only */
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: #fcfcfc; /* Very subtle banding */
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #f0f9ff; /* Light blue highlight */
+    -fx-table-cell-border-color: transparent;
+}
+
+/* The Cells */
+.table-view .table-cell {
+    -fx-text-fill: #334155;
+    -fx-padding: 12 10; /* More breathing room */
+    -fx-alignment: CENTER-LEFT;
+    -fx-border-color: transparent; /* REMOVES VERTICAL GRID LINES */
+}
+
+/* Remove the scrollbar track background for cleaner look */
+.table-view .scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+}
+
+/* --- FORM ELEMENTS --- */
+.text-field, .combo-box, .date-picker {
+    -fx-background-color: white;
+    -fx-border-color: #cbd5e1;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-padding: 8;
+}
+
+.text-field:focused, .combo-box:focused, .date-picker:focused {
+    -fx-border-color: -color-primary;
+    -fx-effect: dropshadow(gaussian, rgba(0, 86, 179, 0.2), 4, 0, 0, 0);
+}
+
+/* --- ACTION BUTTONS (CRUD) --- */
+.action-btn {
+    -fx-background-color: -color-primary;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+}
+
+.action-btn:hover {
+    -fx-background-color: #004494;
+}
+
+.delete-btn {
+    -fx-background-color: #dc3545; /* Red for delete */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4;
+}
+
+.delete-btn:hover {
+    -fx-background-color: #bb2d3b;
+}
+
+.secondary-btn {
+    -fx-background-color: white;
+    -fx-border-color: #cbd5e1;
+    -fx-text-fill: #334155;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+}
+
+.secondary-btn:hover {
+    -fx-background-color: #f1f5f9;
+}
+/* --- DASHBOARD CARDS --- */
+.dashboard-card {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: -color-border;
+    -fx-padding: 20;
+    /* Subtle shadow for depth */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 10, 0, 0, 2);
+}
+
+.card-title {
+    -fx-text-fill: #64748b; /* Muted slate grey */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 10 0;
+}
+
+.card-value {
+    -fx-text-fill: -color-sidebar; /* Dark blue */
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+.card-icon {
+    -fx-font-size: 30px;
+    -fx-fill: -color-accent;
+}
+
+/* --- TAB PANE STYLING (To make it look pro) --- */
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: transparent;
+}
+
+.tab-pane .tab {
+    -fx-background-color: white;
+    -fx-background-insets: 0;
+    -fx-background-radius: 4 4 0 0;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1 1 0 1; /* Top, Right, No Bottom, Left */
+    -fx-padding: 10 20;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: white;
+    -fx-border-color: -color-primary -color-border transparent -color-border; /* Blue Top Border */
+    -fx-border-width: 3 1 0 1;
+}
+
+.tab-pane .tab:selected .tab-label {
+    -fx-text-fill: -color-primary;
+    -fx-font-weight: bold;
+}
+
+.tab-content-area {
+    -fx-background-color: white;
+    -fx-border-color: -color-border;
+    -fx-border-width: 0 1 1 1;
+    -fx-padding: 20;
+}
